@@ -376,7 +376,55 @@
                 ]
               }
             }
-          ]
+          ],
+          "natRuleCollections": [
+            {
+                "name": "MarcNat",
+                "properties": {
+                    "provisioningState": "Succeeded",
+                    "priority": 100,
+                    "action": {
+                        "type": "Dnat"
+                    },
+                    "rules": [
+                        {
+                            "name": "JumpRDP",
+                            "protocols": [
+                                "TCP"
+                            ],
+                            "translatedAddress": "10.0.0.4",
+                            "translatedPort": "3389",
+                            "sourceAddresses": [
+                                "*"
+                            ],
+                            "destinationAddresses": [
+                              "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('publicIPName')), '2017-03-30', 'Full').ipAddress]"
+                            ],
+                            "destinationPorts": [
+                                "3390"
+                            ]
+                        },
+                        {
+                            "name": "ServerRDP",
+                            "protocols": [
+                                "TCP"
+                            ],
+                            "translatedAddress": "10.0.2.4",
+                            "translatedPort": "3389",
+                            "sourceAddresses": [
+                                "*"
+                            ],
+                            "destinationAddresses": [
+                              "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('publicIPName')), '2017-03-30', 'Full').ipAddress]"
+                            ],
+                            "destinationPorts": [
+                                "3391"
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
         }
       }
     ]
