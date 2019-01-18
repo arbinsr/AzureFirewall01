@@ -353,7 +353,7 @@
                   {
                     "name": "appRule1",
                     "protocols": [{"port": "80", "protocolType": "http"}, {"port": "443", "protocolType": "https"}],
-                    "targetUrls": ["*microsoft.com"]
+                    "targetFqdns": ["*microsoft.com"]
                   }
                 ]
               }
