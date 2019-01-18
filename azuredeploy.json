@@ -46,7 +46,6 @@
       "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sajumpbox')]",
       "azfwRouteTableName": "AzfwRouteTable",
       "firewallName": "firewall1",
-      "publicIP": "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('publicIPName')), '2017-10-01', 'Full').ipAddress]",
       "publicIPName": "publicIP1",
       "azureFirewallSubnetId":  "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('virtualNetworkName'), variables('azureFirewallSubnetName'))]",
       "azureFirewallPublicIpId": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPName'))]"
@@ -399,7 +398,7 @@
                                 "*"
                             ],
                             "destinationAddresses": [
-                              "[variables('publicIP')]"
+                              "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('publicIPName')), '2017-10-01', 'Full').properties.ipAddress]"
                             ],
                             "destinationPorts": [
                                 "3390"
@@ -416,7 +415,7 @@
                                 "*"
                             ],
                             "destinationAddresses": [
-                              "[variables('publicIP')]"
+                              "[reference(concat('Microsoft.Network/publicIPAddresses/', variables('publicIPName')), '2017-10-01', 'Full').properties.ipAddress]"
                             ],
                             "destinationPorts": [
                                 "3391"
